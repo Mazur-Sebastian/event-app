@@ -1,8 +1,8 @@
-import { User } from './interfaces/user.interface';
-import { UsersService } from './users.service';
 import { Test, TestingModule } from '@nestjs/testing';
 
 import { UsersController } from './users.controller';
+import { User } from './interfaces/user.interface';
+import { UsersService } from './users.service';
 
 describe('Users Controller', () => {
     let usersController: UsersController;
@@ -11,15 +11,11 @@ describe('Users Controller', () => {
     beforeEach(async () => {
         const module: TestingModule = await Test.createTestingModule({
             controllers: [UsersController],
-            providers: [UsersController],
+            providers: [UsersService],
         }).compile();
 
         usersController = module.get<UsersController>(UsersController);
-        usersService = module.get<UsersService>(UsersController);
-    });
-
-    it('should be defined', () => {
-        expect(UsersController).toBeDefined();
+        usersService = module.get<UsersService>(UsersService);
     });
 
     describe('getAllUsers', () => {
@@ -27,7 +23,7 @@ describe('Users Controller', () => {
             const result: User[] = [
                 {
                     userName: 'Tomasz',
-                    login: 'tomasz@gmail.com',
+                    email: 'tomasz@gmail.com',
                     password: 'pass',
                 },
             ];
@@ -36,6 +32,22 @@ describe('Users Controller', () => {
             );
 
             expect(await usersController.getAllUsers()).toBe(result);
+        });
+    });
+
+    describe('createUser', () => {
+        it('should return created user', async () => {
+            const user: User = {
+                userName: 'Tomasz',
+                email: 'tomasz@gmail.com',
+                password: 'pass',
+            };
+
+            jest.spyOn(usersService, 'createUser').mockImplementation(
+                () => user,
+            );
+
+            expect(await usersController.createUser(user)).toBe(user);
         });
     });
 });
