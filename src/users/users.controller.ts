@@ -8,12 +8,12 @@ import { User } from './interfaces/user.interface';
 export class UsersController {
     constructor(private readonly usersService: UsersService) {}
 
-    @Post()
+    @Post('createUser')
     async createUser(@Body() createUserDto: CreateUserDto) {
         return this.usersService.createUser(createUserDto);
     }
 
-    @Get()
+    @Get('getUsers')
     async getAllUsers(): Promise<User[]> {
         return this.usersService.getAllUsers();
     }

@@ -43,8 +43,8 @@ describe('Users Controller', () => {
                 password: 'pass',
             };
 
-            jest.spyOn(usersService, 'createUser').mockImplementation(
-                () => user,
+            jest.spyOn(usersService, 'createUser').mockImplementation(() =>
+                Promise.resolve(user),
             );
 
             expect(await usersController.createUser(user)).toBe(user);
