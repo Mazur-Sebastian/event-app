@@ -4,10 +4,13 @@ import { Model } from 'mongoose';
 
 import { User } from './interfaces/user.interface';
 import { CreateUserDto } from './dto/createUser.dto';
+import { USER_SCHEMA } from 'src/constants/schemas';
 
 @Injectable()
-export class UsersService {
-    constructor(@InjectModel('User') private readonly userModel: Model<User>) {}
+export class UserService {
+    constructor(
+        @InjectModel(USER_SCHEMA) private readonly userModel: Model<User>,
+    ) {}
 
     async createUser(createUserDto: CreateUserDto): Promise<User> {
         const createdUser = new this.userModel(createUserDto);

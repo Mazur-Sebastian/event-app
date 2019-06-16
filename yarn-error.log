@@ -2,7 +2,7 @@ Arguments:
   /usr/local/bin/node /usr/local/Cellar/yarn/1.12.3/libexec/bin/yarn.js add @types/mongoose--dev
 
 PATH: 
-  /Users/sebastianmac/development/tools/flutter/bin:/usr/local/opt/node@10/bin:/Library/Frameworks/Python.framework/Versions/3.7/bin:/Users/sebastianMac/Development/flutter/bin:/Users/sebastianmac/development/tools/flutter/bin:/usr/local/opt/node@10/bin:/Library/Frameworks/Python.framework/Versions/3.7/bin://flutter/bin:/Users/sebastianmac/Desktop/beleco/events/event-app/flutter/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+  //sebastianmac/development/tools/flutter/bin:/usr/local/opt/node@10/bin:/Library/Frameworks/Python.framework/Versions/3.7/bin://sebastianMac/Development/flutter/bin://sebastianmac/development/tools/flutter/bin:/usr/local/opt/node@10/bin:/Library/Frameworks/Python.framework/Versions/3.7/bin://flutter/bin://sebastianmac/Desktop/beleco/events/event-app/flutter/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
 Yarn version: 
   1.12.3
