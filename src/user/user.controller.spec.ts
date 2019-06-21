@@ -3,7 +3,6 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { UserController } from './user.controller';
 import { User } from './interfaces/user.interface';
 import { UserService } from './user.service';
-import { getModelToken } from '@nestjs/mongoose';
 
 describe('User Controller', () => {
     let userController: UserController;
@@ -21,7 +20,7 @@ describe('User Controller', () => {
 
     describe('getAlluser', () => {
         it('should return an array of all user', async () => {
-            const user = [
+            const user: User[] = [
                 {
                     userName: 'Tomasz',
                     email: 'tomasz@gmail.com',
@@ -39,7 +38,7 @@ describe('User Controller', () => {
 
     describe('createUser', () => {
         it('should return created user', async () => {
-            const user = {
+            const user: User = {
                 userName: 'Sebastiabn Mazur',
                 email: 'seba@wp.pl',
                 password: 'Pass11',
