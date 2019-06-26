@@ -22,7 +22,7 @@ describe('User Controller', () => {
         it('should return an array of all user', async () => {
             const user: User[] = [
                 {
-                    userName: 'Tomasz',
+                    username: 'Tomasz',
                     email: 'tomasz@gmail.com',
                     password: 'pass',
                 },
@@ -39,7 +39,7 @@ describe('User Controller', () => {
     describe('createUser', () => {
         it('should return created user', async () => {
             const user: User = {
-                userName: 'Sebastiabn Mazur',
+                username: 'Sebastiabn Mazur',
                 email: 'seba@wp.pl',
                 password: 'Pass11',
             };

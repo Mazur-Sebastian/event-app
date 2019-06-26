@@ -7,7 +7,7 @@ export class CreateUserDto {
     @MinLength(6, {
         message: 'Name must have min 6 sings',
     })
-    readonly userName: string;
+    readonly username: string;
 
     @ApiModelProperty()
     @IsEmail()

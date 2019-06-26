@@ -4,6 +4,7 @@ import { ApiUseTags } from '@nestjs/swagger';
 import { LoginDto } from './dto/login.dto';
 import { AuthService } from './auth.service';
 import { TokenDto } from './dto/token.dto';
+import { CreateUserDto } from 'src/user/dto/createUser.dto';
 
 @ApiUseTags('auth')
 @Controller('auth')
@@ -12,11 +13,16 @@ export class AuthController {
 
     @Post('login')
     async login(@Body() loginData: LoginDto) {
-        return await this.authService.createToken(loginData);
+        return await this.authService.loginUser(loginData);
     }
 
-    @Post('validate')
-    async verifyToken(@Body() payload: TokenDto) {
-        return await this.authService.verifyToken(payload);
+    // @Post('validate')
+    // async verifyToken(@Body() payload: TokenDto) {
+    //     return await this.authService.verifyToken(payload);
+    // }
+
+    @Post('register')
+    async createUser(@Body() createUserDto: CreateUserDto) {
+        return this.authService.registerUser(createUserDto);
     }
 }

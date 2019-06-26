@@ -1,4 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import {
+    Injectable,
+    NotFoundException,
+    ForbiddenException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
@@ -9,19 +13,30 @@ import { USER_SCHEMA } from 'src/constants/schemas';
 @Injectable()
 export class UserService {
     constructor(
-        @InjectModel(USER_SCHEMA) private readonly userModel: Model<User>,
+        @InjectModel(USER_SCHEMA)
+        private readonly userModel: Model<User>,
     ) {}
 
     async createUser(createUserDto: CreateUserDto): Promise<User> {
+        const user = await this.getUser(createUserDto.email);
+
+        if (user) {
+            throw new NotFoundException('User exist');
+        }
+        console.log('createUserDto', createUserDto);
         const createdUser = new this.userModel(createUserDto);
-        return await createdUser.save();
+        return createdUser.save();
     }
 
     async getAllUsers(): Promise<User[]> {
-        return await this.userModel.find().exec();
+        return await this.userModel.find();
     }
 
-    async findUserByEmail(email: string): Promise<User> {
-        return await this.userModel.findOne({ email });
+    async findUserById(id: string): Promise<User> {
+        return await this.userModel.findById({ id });
+    }
+
+    async getUser(email: string): Promise<User> {
+        return await this.userModel.findOne({ email }).exec();
     }
 }
