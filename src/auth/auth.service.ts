@@ -51,10 +51,10 @@ export class AuthService {
                 ...registerData,
                 password: hashPassword,
             };
-            const createdUser = await this.userService.createUser(
+            const { _id } = await this.userService.createUser(
                 userWithHashPassword,
             );
-            const accessToken = this.jwtService.sign({ id: createdUser._id });
+            const accessToken = this.jwtService.sign({ id: _id });
 
             return { accessToken };
         } catch (error) {

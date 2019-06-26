@@ -1,6 +1,6 @@
 import { ExtractJwt } from 'passport-jwt';
 import { AuthGuard } from '@nestjs/passport';
-import { Controller, Get, UseGuards } from '@nestjs/common';
+import { Controller, Get, UseGuards, Param } from '@nestjs/common';
 import { ApiUseTags, ApiBearerAuth } from '@nestjs/swagger';
 
 import { UserService } from './user.service';
@@ -13,17 +13,15 @@ export class UserController {
 
     @ApiBearerAuth()
     @Get('getUsers')
-    // @UseGuards(AuthGuard('jwt'))
+    @UseGuards(AuthGuard('jwt'))
     async getAllUsers(): Promise<User[]> {
         return this.userService.getAllUsers();
     }
 
     @ApiBearerAuth()
-    @Get('getUser')
+    @Get('getUser/:id')
     @UseGuards(AuthGuard('jwt'))
-    async getUser(): Promise<User> {
-        const token = ExtractJwt.fromAuthHeaderAsBearerToken();
-        console.log('tokencontroller', token);
-        return this.userService.getUser(token);
+    async getUser(@Param('id') id: string): Promise<User> {
+        return this.userService.findUserById(id);
     }
 }
