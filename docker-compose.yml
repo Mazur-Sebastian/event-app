@@ -1,0 +1,29 @@
+version: "3.5"
+
+services:
+  client:
+    build: ./client
+    command: bash -c 'cd /client; yarn; yarn serve'
+    volumes:
+      - ./client:/client
+
+  server:
+    build:
+      dockerfile: dev.Dockerfile
+    volumes:
+      - ./server:/server
+
+  nginx:
+    build:
+      context: ./nginx
+      args:
+        CONFIG_FILE: dev.conf
+    ports:
+      - 8001:80
+
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - ./database:/data/db
