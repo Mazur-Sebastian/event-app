@@ -3,7 +3,7 @@ FROM node:latest
 RUN apt-get -y update \
     && apt-get install -y git
 
-RUN yarn global add @vue/cli -g
+RUN yarn global add @vue/cli
 
 WORKDIR /frontend
 
@@ -14,4 +14,4 @@ RUN yarn
 COPY . .
 RUN chmod 777 node_modules
 
-CMD ["yarn", "serve"]
+CMD yarn run serve --host 0.0.0.0

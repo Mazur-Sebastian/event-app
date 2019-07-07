@@ -57,7 +57,7 @@
 									<v-btn
 										color="accent"
 										@click="onSubmit"
-									>Submit</v-btn>
+									>ok</v-btn>
 									<v-btn
 										color="primary"
 										@click="clear"
@@ -78,7 +78,7 @@
 
 	export default {
 		components: {
-			PasswordInput
+			PasswordInput,
 		},
 		data: () => ({
 			email: '',
@@ -86,13 +86,16 @@
 			email: '',
 			select: null,
 			checkbox: false,
-			showPassword: false
+			showPassword: false,
 		}),
 		methods: {
 			onSubmit() {
 				this.$validator.validateAll().then(res => {
 					if (res) {
-						this.$store.dispatch(LOGIN, { email: this.email, password: this.password });
+						this.$store.dispatch(LOGIN, {
+							email: this.email,
+							password: this.password,
+						});
 					}
 				});
 			},
@@ -100,7 +103,7 @@
 				this.email = '';
 				this.password = '';
 				this.$validator.reset();
-			}
-		}
+			},
+		},
 	};
 </script>
