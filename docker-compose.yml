@@ -1,29 +1,30 @@
 version: "3.5"
 
 services:
-  client:
-    build: ./client
-    command: bash -c 'cd /client; yarn; yarn serve'
-    volumes:
-      - ./client:/client
+  frontend:
+    restart: always
+    env_file:
+      - .env
+    container_name: frontend
 
-  server:
-    build:
-      dockerfile: dev.Dockerfile
-    volumes:
-      - ./server:/server
-
-  nginx:
-    build:
-      context: ./nginx
-      args:
-        CONFIG_FILE: dev.conf
-    ports:
-      - 8001:80
+  backend:
+    build: ./backend
+    restart: always
+    env_file:
+      - .env
+    container_name: backend
+    links:
+      - mongo
 
   mongo:
+    container_name: mongo
     image: mongo
     ports:
-      - 27017:27017
-    volumes:
-      - ./database:/data/db
+      - "27017:27017"
+
+  nginx:
+    build: ./nginx
+    restart: always
+    ports:
+      - $HOSTPORT:80
+    container_name: nginx

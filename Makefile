@@ -1,23 +1,30 @@
-## Variables ###
+include tools.Makefile
 
-containers-tool = docker-compose
+.PHONY: build-dev dev test load-fixtures
+FIXTURES-FILES := $(addprefix ./fixtures/, $(notdir $(wildcard ./app/fixtures/*.json)))
+
 dev-dockerfile = -f docker-compose.yml -f docker-compose.dev.yml
-prod-dockerfile = -f docker-compose.yml -f docker-compose.yml
+staging-dockerfile = -f docker-compose.yml -f docker-compose.staging.yml
 
-### Build & start app ###
+db-container = $$(docker ps -q -f name=postgres)
 
-.PHONY: build-dev
 build-dev:
-	$(containers-tool) $(dev-dockerfile) build
+	docker-compose $(dev-dockerfile) build
 
-.PHONY: build-prod
-build-staging:
-	$(containers-tool) $(prod-dockerfile) build
-
-.PHONY: dev
 dev:
-	$(containers-tool) $(dev-dockerfile) up
+	docker-compose $(dev-dockerfile) up
 
-.PHONY: prod
+build-staging:
+	docker-compose $(staging-dockerfile) build
+
 staging:
-	$(containers-tool) $(prod-dockerfile) up -d
+	docker-compose $(staging-dockerfile) up -d
+
+test:
+	docker-compose exec backend ./manage.py test $(variadic_args)
+
+load-fixtures:
+	docker-compose exec -d backend bash -c "./manage.py loaddata $(FIXTURES-FILES)"
+
+dump_db:
+	docker-compose exec -T postgres pg_dumpall -c -U postgres > ./db_dump.sql

@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import './plugins/vuetify';
 import VeeValidate from 'vee-validate';
 import Vuetify from 'vuetify';
 import './plugins/vuetify';
@@ -16,5 +17,5 @@ Vue.config.productionTip = false;
 new Vue({
     router,
     store,
-    render: h => h(App)
+    render: h => h(App),
 }).$mount('#app');

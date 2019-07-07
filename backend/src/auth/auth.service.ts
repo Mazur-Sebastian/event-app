@@ -4,7 +4,7 @@ import {
     BadRequestException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
 
 import { User } from './../user/interfaces/user.interface';
@@ -13,7 +13,7 @@ import { LoginDto } from './dto/login.dto';
 import { JwtToken } from './interfaces/JwtToken';
 import { CreateUserDto } from './../user/dto/createUser.dto';
 
-const saltRounds = 10;
+const salt = bcrypt.genSaltSync(10);
 @Injectable()
 export class AuthService {
     constructor(
@@ -27,7 +27,7 @@ export class AuthService {
                 loginData.email,
             );
 
-            const match = await bcrypt.compare(loginData.password, password);
+            const match = await bcrypt.compareSync(loginData.password, password);
 
             if (!match) {
                 return new BadRequestException('Bad password');
@@ -43,9 +43,9 @@ export class AuthService {
 
     async registerUser(registerData: CreateUserDto): Promise<JwtToken> {
         try {
-            const hashPassword = await bcrypt.hash(
+            const hashPassword = await bcrypt.hashSync(
                 registerData.password,
-                saltRounds,
+                salt,
             );
             const userWithHashPassword = {
                 ...registerData,

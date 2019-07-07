@@ -17,12 +17,12 @@
 		name: 'App',
 		components: {
 			HelloWorld,
-			NavBar
+			NavBar,
 		},
 		data() {
 			return {
 				//
 			};
-		}
+		},
 	};
 </script>

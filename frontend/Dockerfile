@@ -1,14 +1,17 @@
-FROM node:latest
+# builder
+FROM lts-jessie as builder
 
-WORKDIR /client
+WORKDIR /frontend
 
-RUN apt-get -q update
-RUN apt-get -q -y install nginx
-
-COPY . .
-COPY ./nginx.conf /etc/nginx/conf.d/nginx.conf
+COPY ./yarn.lock ./
+COPY ./package.json ./
 
 RUN yarn
+COPY . .
 RUN yarn build
 
-CMD nginx -g "daemon off;"
+# server
+FROM nginx
+
+COPY ./nginx.conf /etc/nginx/conf.d/nginx.conf
+COPY --from=builder /frontend/build /frontend/build
