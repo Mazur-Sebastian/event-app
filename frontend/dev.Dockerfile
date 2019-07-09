@@ -14,4 +14,4 @@ RUN yarn
 COPY . .
 RUN chmod 777 node_modules
 
-CMD yarn run serve --host 0.0.0.0
+CMD yarn run serve

@@ -28,7 +28,6 @@ services:
     build:
       context: ./nginx
     ports:
-      - 9229:9229
       - $HOSTPORT:80
     restart: always
     depends_on:

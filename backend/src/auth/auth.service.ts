@@ -27,7 +27,10 @@ export class AuthService {
                 loginData.email,
             );
 
-            const match = await bcrypt.compareSync(loginData.password, password);
+            const match = await bcrypt.compareSync(
+                loginData.password,
+                password,
+            );
 
             if (!match) {
                 return new BadRequestException('Bad password');

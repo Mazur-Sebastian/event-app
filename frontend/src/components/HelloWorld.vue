@@ -14,7 +14,7 @@
 			</v-flex>
 
 			<v-flex mb-4>
-				<h1 class="display-2 font-weight-bold mb-3">Welcome to kupa app</h1>
+				<h1 class="display-2 font-weight-bold mb-3">seba app</h1>
 				<p class="subheading font-weight-regular">
 					For help and collaboration with other Vuetify developers,
 					<br>please join our online
@@ -63,7 +63,7 @@
 				xs12
 				mb-5
 			>
-				<h2 class="headline font-weight-bold mb-3">Kupa tralala</h2>
+				<h2 class="headline font-weight-bold mb-3">seba tralala</h2>
 
 				<v-layout justify-center>
 					<a
