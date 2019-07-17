@@ -1,0 +1,30 @@
+version: "3.5"
+
+services:
+  frontend:
+    build:
+      dockerfile: dev.Dockerfile
+      context: ./frontend
+    volumes:
+      - /frontend/node_modules
+      - ./frontend:/frontend
+    ports:
+      - 80:8080
+    stdin_open: true
+    tty: true
+    environment:
+      - HOST=0.0.0.0
+      - CHOKIDAR_USEPOLLING=true
+
+  backend:
+    volumes:
+      - ./backend:/backend
+    ports:
+      - 4000:5000
+
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - ./database:/data/db

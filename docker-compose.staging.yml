@@ -1,0 +1,12 @@
+version: "3.5"
+
+services:
+  frontend:
+    build: ./frontend
+    image: $PROJECT_NAME-frontend:$BUILD_NUMBER
+
+  backend:
+    image: $PROJECT_NAME-backend:$BUILD_NUMBER
+
+  nginx:
+    image: $PROJECT_NAME-nginx:$BUILD_NUMBER
