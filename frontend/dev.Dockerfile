@@ -11,7 +11,5 @@ COPY ./yarn.lock ./
 COPY ./package.json ./
 
 RUN yarn
-COPY . .
-RUN chmod 777 node_modules
 
-CMD yarn run serve
+CMD ["yarn", "serve"]
