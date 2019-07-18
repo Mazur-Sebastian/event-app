@@ -28,7 +28,7 @@ services:
     build:
       context: ./nginx
     ports:
-      - $HOSTPORT:80
+      - $HOSTPORT:8080
     restart: always
     depends_on:
       - frontend

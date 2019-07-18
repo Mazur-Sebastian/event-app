@@ -9,12 +9,9 @@ services:
       - /frontend/node_modules
       - ./frontend:/frontend
     ports:
-      - 80:8080
+      - 8080:3000
     stdin_open: true
     tty: true
-    environment:
-      - HOST=0.0.0.0
-      - CHOKIDAR_USEPOLLING=true
 
   backend:
     volumes:
