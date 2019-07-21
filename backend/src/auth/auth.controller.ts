@@ -1,4 +1,4 @@
-import { Controller, Body, Post } from '@nestjs/common';
+import { Controller, Body, Post, Get, Param } from '@nestjs/common';
 import { ApiUseTags } from '@nestjs/swagger';
 
 import { LoginDto } from './dto/login.dto';
@@ -24,5 +24,10 @@ export class AuthController {
     @Post('register')
     async createUser(@Body() createUserDto: CreateUserDto) {
         return this.authService.registerUser(createUserDto);
+    }
+
+    @Get('verify/:id')
+    async verifyToken(@Param('id') id): Promise<string | object> {
+        return await this.authService.verifyToken(id);
     }
 }

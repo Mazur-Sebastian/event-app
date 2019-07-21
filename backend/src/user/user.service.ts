@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
 import { User } from './interfaces/user.interface';
+import { UserData } from 'src/user/interfaces/userData.interface';
 import { CreateUserDto } from './dto/createUser.dto';
 import { USER_SCHEMA } from 'src/constants/schemas';
 
@@ -28,9 +29,13 @@ export class UserService {
         return await this.userModel.find();
     }
 
-    async findUserById(_id: string): Promise<User> {
+    async findUserById(_id: string): Promise<UserData> {
         try {
-            return await this.userModel.findById({ _id });
+            const { username, email } = await this.userModel.findById({ _id });
+            return {
+                username,
+                email,
+            };
         } catch {
             throw new ForbiddenException('User exist');
         }

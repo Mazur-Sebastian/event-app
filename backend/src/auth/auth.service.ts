@@ -1,3 +1,4 @@
+import { JwtPayload } from './interfaces/JwtPayload';
 import {
     Injectable,
     ForbiddenException,
@@ -7,13 +8,19 @@ import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
 
-import { User } from './../user/interfaces/user.interface';
 import { UserService } from './../user/user.service';
 import { LoginDto } from './dto/login.dto';
 import { JwtToken } from './interfaces/JwtToken';
 import { CreateUserDto } from './../user/dto/createUser.dto';
+import { UserData } from 'src/user/interfaces/userData.interface';
 
 const salt = bcrypt.genSaltSync(10);
+
+interface JWT {
+    id: string;
+    ion: number;
+    exp: number;
+}
 @Injectable()
 export class AuthService {
     constructor(
@@ -65,11 +72,13 @@ export class AuthService {
         }
     }
 
-    async validateUser(id: string): Promise<User> {
+    async validateUser(id: string): Promise<UserData> {
         return await this.userService.findUserById(id);
     }
 
-    async verifyToken({ accessToken }: JwtToken): Promise<string | object> {
-        return await jwt.verify(accessToken, process.env.SECRET_KEY);
+    async verifyToken(accessToken: string): Promise<string | object> {
+        const userData = await jwt.verify(accessToken, process.env.SECRET_KEY);
+
+        return userData;
     }
 }

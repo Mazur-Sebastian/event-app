@@ -5,7 +5,7 @@ import Vuetify from 'vuetify';
 import './plugins/vuetify';
 
 import App from './App.vue';
-import router from './router';
+import { router } from './router';
 import store from './store/store';
 import { themeColors } from './config/themeSettings';
 
