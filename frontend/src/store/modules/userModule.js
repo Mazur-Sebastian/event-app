@@ -15,20 +15,20 @@ export const userModule = {
 	actions: {
 		[LOGIN]: async ({ commit }, payload) => {
 			commit(SET_LOADING);
+			console.log({ payload });
+
 			try {
 				const {
 					data: { accessToken },
 				} = await HTTP.post('/auth/login', payload);
 				saveToken(accessToken);
-				console.log(accessToken);
+
 				const { data } = await HTTP.post('/auth/verify', {
 					accessToken,
 				});
 				const userData = await HTTP.get(`/user/getUser/${data.id}`);
-				setTimeout(function() {
-					commit(SET_USER, { user: userData.data });
-				}, 15000);
-				// commit(SET_USER, { user: userData.data });
+
+				commit(SET_USER, { user: userData.data });
 			} catch (err) {
 				destroyToken();
 				console.log(err);
@@ -36,6 +36,7 @@ export const userModule = {
 		},
 		[REGISTER]: async ({ commit }, payload) => {
 			commit(SET_LOADING);
+			console.log({ payload });
 			try {
 				const { accessToken } = await HTTP.post(
 					'/auth/register',

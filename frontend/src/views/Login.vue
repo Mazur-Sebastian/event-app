@@ -15,15 +15,13 @@
 	import { mapGetters } from 'vuex';
 
 	import LoginForm from '../components/LoginForm';
-	import Loader from '../components/elements/Loader.vue';
 
 	export default {
 		components: {
 			LoginForm,
-			Loader
 		},
 		computed: {
-			...mapGetters(['isLoading'])
-		}
+			...mapGetters(['isLoading']),
+		},
 	};
-</script>
+</script> 

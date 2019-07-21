@@ -15,15 +15,13 @@
 	import { mapGetters } from 'vuex';
 
 	import RegisterForm from '../components/RegisterForm';
-	import Loader from '../components/elements/Loader.vue';
 
 	export default {
 		components: {
 			RegisterForm,
-			Loader
 		},
 		computed: {
-			...mapGetters(['isLoading'])
-		}
+			...mapGetters(['isLoading']),
+		},
 	};
 </script>

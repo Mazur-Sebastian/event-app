@@ -8,5 +8,6 @@ export const themeColors = {
 		error: colors.red.darken1,
 		white: colors.shades.white,
 		black: colors.shades.black,
+		grey: colors.blueGrey.darken2
 	},
 };

@@ -11,9 +11,6 @@
 			v-bind="$attrs"
 			v-on="$listeners"
 			outline
-			:append-icon="showPassword ? 'visibility' : 'visibility_off'"
-			@click:append="showPassword = !showPassword"
-			:type="showPassword ? 'text' : 'password'"
 		></v-text-field>
 	</ValidationProvider>
 </template>
@@ -36,7 +33,6 @@
 		},
 		data: () => ({
 			innerValue: '',
-			showPassword: false,
 		}),
 		watch: {
 			innerValue(newVal) {

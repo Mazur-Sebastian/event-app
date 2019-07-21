@@ -17,6 +17,9 @@ async function bootstrap() {
     SwaggerModule.setup('api', app, document);
     app.enableCors();
     await app.listen(process.env.NEST_PORT);
+    console.log(
+        `serwer listen on port: http://localhost:${process.env.NEST_PORT}`,
+    );
 }
 
 bootstrap();

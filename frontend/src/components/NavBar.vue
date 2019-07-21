@@ -1,11 +1,11 @@
 <template>
 	<v-toolbar
 		dark
-		color="primary"
+		color="white"
 	>
 		<v-toolbar-items class="hidden-sm-and-down">
 			<v-btn
-				color="white"
+				color="accent"
 				flat
 				to="/"
 			>Event world</v-btn>
@@ -15,7 +15,7 @@
 			<v-btn
 				v-for="item in navBarItems"
 				:key="item.name"
-				color="white"
+				color="accent"
 				flat
 				:to="item.route"
 			>{{ item.name }}</v-btn>
@@ -29,17 +29,17 @@
 			navBarItems: [
 				{
 					name: 'Create new group',
-					route: '/create-group'
+					route: '/create-group',
 				},
 				{
 					name: 'Login',
-					route: '/login'
+					route: '/login',
 				},
 				{
 					name: 'Register',
-					route: '/register'
-				}
-			]
-		})
+					route: '/register',
+				},
+			],
+		}),
 	};
 </script>
