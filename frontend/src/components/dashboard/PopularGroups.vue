@@ -15,15 +15,17 @@
 			mt-3
 			mb-3
 		>
-			<GroupCard/>
-			<GroupCard/>
-			<GroupCard/>
-			<GroupCard/>
+			<GroupCard
+				v-for="group in groups"
+				:key="group.id"
+				:group="group"
+			/>
 		</v-layout>
 	</v-container>
 </template>
 
 <script>
+	import { mockGroups } from '../../config/mockGroups.js';
 	import GroupCard from '../GroupCard';
 
 	export default {
@@ -31,7 +33,9 @@
 			GroupCard,
 		},
 		data() {
-			return {};
+			return {
+				groups: mockGroups,
+			};
 		},
 	};
 </script>

@@ -15,22 +15,27 @@
 			mt-3
 			mb-3
 		>
-			<EventCard/>
-			<EventCard/>
-			<EventCard/>
+			<EventCard
+				v-for="event in events"
+				:key="event.id"
+				:event="event"
+			/>
 		</v-layout>
 	</v-container>
 </template>
 
 <script>
+	import { mockEvents } from '../../config/mockEvents.js';
 	import EventCard from '../EventCard';
-
+	console.log(mockEvents);
 	export default {
 		components: {
 			EventCard,
 		},
 		data() {
-			return {};
+			return {
+				events: mockEvents,
+			};
 		},
 	};
 </script>

@@ -20,13 +20,14 @@
 				wrap
 			>
 				<v-flex
-					v-for="(item,i) in categoriesItems"
-					:key="i"
+					v-for="item in categoriesItems"
+					:key="item.index"
 					xs3
 				>
 					<CategoryCard
 						:categoryName="item.categoryName"
 						:categoryImage="item.categoryImage"
+						:index="item.index"
 					/>
 				</v-flex>
 			</v-layout>

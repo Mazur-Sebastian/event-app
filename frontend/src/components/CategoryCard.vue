@@ -1,5 +1,8 @@
 <template>
-	<v-card class="elevation-0 pr-1">
+	<v-card
+		class="elevation-0 pr-1 category"
+		:to="index"
+	>
 		<v-img
 			:src="categoryImage"
 			aspect-ratio="2.25"
@@ -15,6 +18,12 @@
 
 <script>
 	export default {
-		props: ['categoryName', 'categoryImage'],
+		props: ['categoryName', 'categoryImage', 'index'],
 	};
 </script>
+
+<style lang="scss">
+	.category {
+		cursor: pointer;
+	}
+</style>

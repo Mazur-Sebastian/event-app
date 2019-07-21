@@ -1,18 +1,21 @@
 <template>
-	<v-layout
-		justify-center
-		align-center
-		mt-3
-		mb-3
+	<v-container
+		pt-3
+		pb-3
 	>
-		<FlatButton
-			v-for="item in buttonItems"
-			:key="item.name"
-			color="accent"
-			@onClick="item.func"
-			:text="item.name"
-		/>
-	</v-layout>
+		<v-layout
+			justify-space-between
+			align-center
+		>
+			<FlatButton
+				v-for="item in buttonItems"
+				:key="item.name"
+				color="accent"
+				@onClick="item.func"
+				:text="item.name"
+			/>
+		</v-layout>
+	</v-container>
 </template>
 
 

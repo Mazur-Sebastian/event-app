@@ -8,18 +8,21 @@
 				>
 					<v-card-title primary-title>
 						<div>
-							<p class="accent--text font-weight-medium subheading">12.03.2107</p>
-							<h3 class="headline mb-0">Title</h3>
-							<h4 class="subheading mb-2">Subtitle</h4>
-							<p class="body-2 font-weight-light">{{ card_text }}</p>
+							<p class="accent--text font-weight-medium subheading">{{ event.eventDate }}</p>
+							<h3 class="headline mb-0">{{ event.eventTitle }}</h3>
+							<h4 class="subheading mb-2">{{ event.eventOrganizer }}</h4>
+							<p class="body-2 font-weight-light">{{ event.eventPlace }}</p>
 						</div>
 					</v-card-title>
 					<v-card-actions>
 						<v-layout
-							justify-end
+							align-center
+							justify-space-between
 							mb-2
 							mr-2
+							ml-2
 						>
+							<h4 class="subheading">{{ event.eventParticipants }} participiants</h4>
 							<FlatButton
 								flat
 								color="primary"
@@ -35,11 +38,6 @@
 
 <script>
 	export default {
-		data() {
-			return {
-				card_text:
-					'Lorem ipsum dolor sit amet, brute iriure accusata ne mea. Eos suavitate referrentur ad, te duo agam libris qualisque, utroque quaestio accommodare no qui.',
-			};
-		},
+		props: ['event'],
 	};
 </script>
